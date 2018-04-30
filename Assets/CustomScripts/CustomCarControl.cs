@@ -107,9 +107,14 @@ public class CustomCarControl : MonoBehaviour {
             float angle = (float)(position * end_angle);
             float distance = distances[distances.Length - 1];
             for (int j = 0; j < markers.Length; ++j) {
-                if (angle < markers[j]) {
-                    float pos = (angle - markers[j - 1]) / (markers[j] - markers[j - 1]);
-                    distance = (float)((1 - pos) * distances[j - 1] + pos * distances[j]);
+                if (angle <= markers[j]) {
+                    if (j == 0) {
+                        distance = distances[0];
+                    }
+                    else {
+                        float pos = (angle - markers[j - 1]) / (markers[j] - markers[j - 1]);
+                        distance = (float)((1 - pos) * distances[j - 1] + pos * distances[j]);
+                    }
                     break;
                 }
             }

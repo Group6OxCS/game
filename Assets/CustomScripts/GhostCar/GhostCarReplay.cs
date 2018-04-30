@@ -17,7 +17,6 @@ public class GhostCarReplay : MonoBehaviour {
     void FixedUpdate () {
         if (data.history == null || data.history.Count == 0) {
             data = gm.inter.GhostSetup();
-            Debug.Log(data.history.Count);
             if (data.history.Count == 0) {
                 gameObject.SetActive(false);
                 return;
