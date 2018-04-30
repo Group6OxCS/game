@@ -24,8 +24,11 @@ public class GameManager : MonoBehaviour {
         inter.QueryEnv(this);
     }
 
+    void Update() {
+        Time.timeScale = Input.GetKey(KeyCode.P) ? 0f : (Input.GetKey(KeyCode.T) ? 0.1f : 1f);
+    }
+
     void FixedUpdate() {
-        Time.timeScale = Input.GetKey(KeyCode.T) ? 0.1f : 1f;
         physicsFramesSinceStart++;
     }
 }
