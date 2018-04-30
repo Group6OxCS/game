@@ -11,6 +11,7 @@ public class UIControl : MonoBehaviour {
     public FuelConverter fuel_converter;
     public SensorControl sensor_control;
     public SpeedConverter speed_converter;
+    public Cmds cmds_widget;
 
     float floatFadeAmount = 1;
     public float floatFadeFactor = 4; // reverse exponential fade
@@ -36,6 +37,7 @@ public class UIControl : MonoBehaviour {
 
     public void ShowCommands(PlayerCommands cmds) {
         scriptText.text = cmds.message;
+        cmds_widget.ShowCmds(cmds);
     }
 
     public void EndLevel(EndLevelData data) {
