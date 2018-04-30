@@ -5,7 +5,7 @@ using UnityEngine;
 public class StableCamera : MonoBehaviour {
 
 	public GameObject TheCar;     // set in editor, this is the player Car object
-	public float rotationDamping; // set in editor, suggested value 10
+	public float rotationDamping = 10;
 	private Rigidbody m_RigidBody;
 
 	private void Start() {
