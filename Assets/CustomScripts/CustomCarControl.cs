@@ -78,7 +78,7 @@ public class CustomCarControl : MonoBehaviour {
         Color old_color = transform.Find("SkyCar").transform.Find("SkyCarBodyPaintwork").GetComponent<MeshRenderer>().materials[1].color;
         foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>()) {
             for (int i = 0; i < mr.materials.Length; ++i) {
-                if (mr.materials[i].color == old_color) {
+                if (mr.materials[i].HasProperty("_Color") && mr.materials[i].color == old_color) {
                     mr.materials[i].SetColor("_Color", color);
                     mr.materials[i].SetColor("_SpecColor", color);
                 }
