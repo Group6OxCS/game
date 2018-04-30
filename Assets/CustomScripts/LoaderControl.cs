@@ -31,11 +31,13 @@ public class LoaderControl : MonoBehaviour {
 
     void GoLeft() {
         index = (index - 1 + data.Length) % data.Length;
+        Debug.Log("Go left to " + data[index].level);
         SetTrackData();
     }
 
     void GoRight() {
         index = (index + 1) % data.Length;
+        Debug.Log("Go right to " + data[index].level);
         SetTrackData();
     }
 

@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 
 using UnityStandardAssets.Vehicles.Car;
 
-
 [RequireComponent(typeof (CarController))]
 public class CustomCarControl : MonoBehaviour {
     public GameManager gm;
@@ -18,12 +17,14 @@ public class CustomCarControl : MonoBehaviour {
     public UIControl ui;
     public AudioSource nitro_source;
 
+    public int countdownTime = 3;
     public float nitroFuel = 1; // amount of fuel left (in percentage of full tank)
     public float nitroForce = 100000; // nitro force applied per second
     public float nitroCost = 0.2f; // fuel burnt per second
     public float nitroRegen = 0.01f; // fuel regenerated per second
     public float fuelUsed = 0;
     bool nitro_sound_playing = false;
+    int start_framerate;
 
     public int updateEvery;
     public float obstacleDetectionRadius;
@@ -64,6 +65,8 @@ public class CustomCarControl : MonoBehaviour {
         if(ui == null) {
             Debug.Log("Error: Got no ui!");
         }
+        start_framerate = (int)(1 / Time.fixedDeltaTime);
+        gm.physicsFramesSinceStart = -countdownTime * start_framerate;
     }
 
     private void Awake() {
@@ -182,7 +185,8 @@ public class CustomCarControl : MonoBehaviour {
     private bool checkStuck() {
         if (rb.velocity.magnitude < stuckTolerance) {
             secondsStuck += Time.fixedDeltaTime;
-        } else {
+        }
+        else {
             secondsStuck = 0;
         }
         return secondsStuck > stuckTimeout;
@@ -204,6 +208,13 @@ public class CustomCarControl : MonoBehaviour {
             Recolor(cs.color);
         }
         int frames = gm.physicsFramesSinceStart;
+        if (frames < 0) {
+            ui.FloatingText((Mathf.Ceil((float) -frames / start_framerate)).ToString());
+            return;
+        }
+        if (frames == 0) {
+            ui.FloatingText("Go!");
+        }
         if (gm.inter.HasCommands()) {
             waitingForCommands = false;
             cmds = gm.inter.GetCommands();

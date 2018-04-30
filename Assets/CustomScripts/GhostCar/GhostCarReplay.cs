@@ -24,6 +24,7 @@ public class GhostCarReplay : MonoBehaviour {
             }
         }
         int frame = gm.physicsFramesSinceStart;
+        if (frame < 0) return;
 
         //update the interpolation endpoints
         int indexInHistory = frame / data.historyFramerate;
