@@ -918,7 +918,7 @@ Transform:
   - {fileID: 4040514879150168}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -96.86301, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -107.69, z: 0}
 --- !u!4 &4655712457293406
 Transform:
   m_ObjectHideFlags: 1
@@ -2372,7 +2372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TheCar: {fileID: 1705488491631492}
-  responsivenessLim: 10
+  rotationDamping: 10
 --- !u!114 &114306902892851674
 MonoBehaviour:
   m_ObjectHideFlags: 1
