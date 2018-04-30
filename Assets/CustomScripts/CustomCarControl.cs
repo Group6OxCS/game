@@ -257,10 +257,10 @@ public class CustomCarControl : MonoBehaviour {
             Vector3[] waypoints = tc.GetNextMarkers(lastVisited, 2);
             Vector3 waypoint = waypoints[0] - rb.position;
             data.waypoint_distance = waypoint.magnitude;
-            data.waypoint_bearing = Vector3.SignedAngle(waypoint, transform.forward, Vector3.up);
+            data.waypoint_bearing = Vector3.SignedAngle(transform.forward, waypoint, Vector3.up);
             waypoint = waypoints[1] - rb.position;
             data.future_waypoint_distance = waypoint.magnitude;
-            data.future_waypoint_bearing = Vector3.SignedAngle(waypoint, transform.forward, Vector3.up);
+            data.future_waypoint_bearing = Vector3.SignedAngle(transform.forward, waypoint, Vector3.up);
 
             List<ODRay> odrays = ODRays(45, new float[]{0, 2, 6, 10, 22, 45}, new float[]{150, 100, 90, 40, 40, 30});
             data.obstacle_detection_rays = odrays.ToArray();
