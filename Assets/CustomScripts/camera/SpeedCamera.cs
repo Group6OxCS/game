@@ -6,6 +6,7 @@ using UnityStandardAssets.Vehicles.Car;
 public class SpeedCamera : MonoBehaviour {
 
 	public GameObject TheCar;
+	private Rigidbody rb;
 	private float TopSpeed;
 
 	private float slowDistance = 5;
@@ -22,13 +23,14 @@ public class SpeedCamera : MonoBehaviour {
 	private float currentSlide = 0;
 	public float maxSlide = 3;
 	public float slideResponsiveness = 0.1f;
-	public float cameraShakeStrengthCoeff = 0.001f;
-	public float cameraShakeStartSpeed = 100;
+	public float cameraShakeStrengthCoeff = 0.005f;
+	public float cameraShakeStartSpeed = 50;
 
 	private float relativeSpeedCoeff = 1.3f; // controls speed-based interpolation
 
 	void Start () {
 		TopSpeed = TheCar.GetComponent<CarController> ().MaxSpeed;
+		rb = TheCar.GetComponent<Rigidbody> ();
 
 		slowPos = new Vector3(0, slowHeight, -slowDistance);
 		fastPos = new Vector3(0, fastHeight, -fastDistance);
@@ -36,10 +38,9 @@ public class SpeedCamera : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		float speed = TheCar.GetComponent<CarController> ().CurrentSpeed;
-		float relativeSpeed = speed / TopSpeed * relativeSpeedCoeff;
-		float rigAngle = transform.localEulerAngles.y;
-		float targetSlide = - maxSlide * relativeSpeed * Mathf.Sin (rigAngle * Mathf.Deg2Rad);
+		float speed = rb.velocity.magnitude;
+		float relativeSpeed = Mathf.Clamp01(speed / TopSpeed * relativeSpeedCoeff);
+		float targetSlide = - maxSlide * relativeSpeed * Mathf.Sin (transform.localEulerAngles.y * Mathf.Deg2Rad);
 		currentSlide = Mathf.Lerp (currentSlide, targetSlide, slideResponsiveness);
 
 		float fov = Mathf.Lerp      (slowFoV,      fastFoV,      relativeSpeed);
