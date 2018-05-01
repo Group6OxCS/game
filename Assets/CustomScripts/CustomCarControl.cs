@@ -170,14 +170,10 @@ public class CustomCarControl : MonoBehaviour {
         if (throttle > 0 && nitroFuel > nitroCost * Time.fixedDeltaTime) {
             if (!nitro_sound_playing) {
                 nitro_sound_playing = true;
-                    nitro_start.Stop();
-                    nitro_start.volume = 0.8f;
-                    nitro_start.Play();
-                    nitro_sustain.Stop();
-                    nitro_sustain.volume = 1f;
-                    nitro_sustain.Play();
+                nitro_start.Stop();
+                nitro_start.volume = 1f;
+                nitro_start.Play();
             }
-            nitro_sustain.volume = Math.Min(nitro_sustain.volume + 0.03f, 1f);
             nitroFuel -= throttle * nitroCost * Time.fixedDeltaTime;
             nitro_usage += throttle * nitroCost * Time.fixedDeltaTime;
             rb.AddRelativeForce(Vector3.forward * nitroForce * Time.deltaTime);
@@ -189,7 +185,7 @@ public class CustomCarControl : MonoBehaviour {
                 nitro_end.volume = 0.5f;
                 nitro_end.Play();
             }
-            nitro_sustain.volume *= 0.9f;
+            nitro_start.volume *= 0.9f;
             nitro_end.volume *= 0.97f;
         }
         nitroFuel += nitroRegen * Time.deltaTime;
