@@ -15,7 +15,7 @@ public class CustomCarControl : MonoBehaviour {
     public Rigidbody rb;
     public CarController m_Car;
     public UIControl ui;
-    public AudioSource nitro_source;
+    public AudioSource nitro_start, nitro_sustain, nitro_end;
 
     public int countdownTime = 3;
     public float nitroFuel = 1; // amount of fuel left (in percentage of full tank)
@@ -170,18 +170,27 @@ public class CustomCarControl : MonoBehaviour {
         if (throttle > 0 && nitroFuel > nitroCost * Time.fixedDeltaTime) {
             if (!nitro_sound_playing) {
                 nitro_sound_playing = true;
-                nitro_source.Stop();
-                nitro_source.volume = 1f;
-                nitro_source.time = 0f;
-                nitro_source.Play();
+                    nitro_start.Stop();
+                    nitro_start.volume = 0.8f;
+                    nitro_start.Play();
+                    nitro_sustain.Stop();
+                    nitro_sustain.volume = 0f;
+                    nitro_sustain.Play();
             }
+            nitro_sustain.volume = Math.Min(nitro_sustain.volume + 0.03f, 1f);
             nitroFuel -= throttle * nitroCost * Time.fixedDeltaTime;
             nitro_usage += throttle * nitroCost * Time.fixedDeltaTime;
             rb.AddRelativeForce(Vector3.forward * nitroForce * Time.deltaTime);
         }
         else {
-            nitro_sound_playing = false;
-            nitro_source.volume *= 0.9f;
+            if (nitro_sound_playing) {
+                nitro_sound_playing = false;
+                nitro_end.Stop();
+                nitro_end.volume = 0.5f;
+                nitro_end.Play();
+            }
+            nitro_sustain.volume *= 0.9f;
+            nitro_end.volume *= 0.97f;
         }
         nitroFuel += nitroRegen * Time.deltaTime;
         nitroFuel = Mathf.Clamp(nitroFuel, 0, 1);
