@@ -16,6 +16,7 @@ public class CustomCarControl : MonoBehaviour {
     public CarController m_Car;
     public UIControl ui;
     public AudioSource nitro_start, nitro_sustain, nitro_end;
+    public ParticleSystem flames_left, flames_right;
 
     public int countdownTime = 3;
     public float nitroFuel = 1; // amount of fuel left (in percentage of full tank)
@@ -168,6 +169,8 @@ public class CustomCarControl : MonoBehaviour {
 
     private void applyNitro(float throttle) {
         if (throttle > 0 && nitroFuel > nitroCost * Time.fixedDeltaTime) {
+            flames_left.Play();
+            flames_right.Play();
             if (!nitro_sound_playing) {
                 nitro_sound_playing = true;
                 nitro_start.Stop();
@@ -179,6 +182,8 @@ public class CustomCarControl : MonoBehaviour {
             rb.AddRelativeForce(Vector3.forward * nitroForce * Time.deltaTime);
         }
         else {
+            flames_left.Stop();
+            flames_right.Stop();
             if (nitro_sound_playing) {
                 nitro_sound_playing = false;
                 nitro_end.Stop();
