@@ -174,7 +174,7 @@ public class CustomCarControl : MonoBehaviour {
                     nitro_start.volume = 0.8f;
                     nitro_start.Play();
                     nitro_sustain.Stop();
-                    nitro_sustain.volume = 0f;
+                    nitro_sustain.volume = 1f;
                     nitro_sustain.Play();
             }
             nitro_sustain.volume = Math.Min(nitro_sustain.volume + 0.03f, 1f);
