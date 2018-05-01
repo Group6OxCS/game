@@ -22,7 +22,7 @@ public struct TransformData {
 
 [Serializable]
 public struct PlayerData {
-    public float speed;
+    public float speed, bearing;
     public ODRay[] obstacle_detection_rays;
     public float waypoint_distance, waypoint_bearing;
     public float future_waypoint_distance, future_waypoint_bearing;

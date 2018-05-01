@@ -257,6 +257,7 @@ public class CustomCarControl : MonoBehaviour {
 
             PlayerData data;
             data.speed = rb.velocity.magnitude;
+            data.bearing = Vector3.SignedAngle(transform.forward, rb.velocity, Vector3.up);
             data.nitro_left = nitroFuel;
 
             Vector3[] waypoints = tc.GetNextMarkers(lastVisited, 2);
