@@ -1009,8 +1009,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1705488491631492}
-  m_LocalRotation: {x: -1.5205935e-17, y: -0.7481627, z: -0.000000089187935, w: 0.66351545}
-  m_LocalPosition: {x: 256.1, y: 1, z: 256.1}
+  m_LocalRotation: {x: -0, y: -0.96062994, z: -0, w: 0.2778312}
+  m_LocalPosition: {x: 382, y: 16.4, z: 283.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4085563658214902}
@@ -1026,7 +1026,7 @@ Transform:
   - {fileID: 4324922794391634}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -107.69, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -147.738, z: 0}
 --- !u!4 &4655712457293406
 Transform:
   m_ObjectHideFlags: 1
@@ -2676,7 +2676,7 @@ MonoBehaviour:
   TheCar: {fileID: 1705488491631492}
   maxSlide: 3
   slideResponsiveness: 0.1
-  cameraShakeStrengthCoeff: 0.005
+  cameraShakeStrengthCoeff: 0.002
   cameraShakeStartSpeed: 50
 --- !u!114 &114504542319650098
 MonoBehaviour:
@@ -2930,7 +2930,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -9460,7 +9460,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
