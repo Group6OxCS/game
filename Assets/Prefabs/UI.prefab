@@ -1792,8 +1792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioList:
-  - {fileID: 8300000, guid: c4c6ce77fbc6f604ebf0c280a58decfe, type: 3}
-  - {fileID: 8300000, guid: 7452e90ac483ec940b3e397b7b0dffc1, type: 3}
+  - {fileID: 8300000, guid: 708b167c77b35403b91cf407dbcaf103, type: 3}
   trackAudioSource: {fileID: 82321433368899034}
 --- !u!114 &114434833714654034
 MonoBehaviour:
