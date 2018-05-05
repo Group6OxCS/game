@@ -152,6 +152,7 @@ public class CustomCarControl : MonoBehaviour {
     public void VisitMarker(int index) {
         if (index == (lastVisited + 1) % tc.numMarkers) {
             lastVisited = index;
+			tc.UpdateArrow (lastVisited);
             Debug.Log("Marker " + lastVisited + " crossed");
             ui.FloatingText("Marker " + (lastVisited + 1) + "/" + tc.numMarkers + " passed");
             if (index == 0) {
